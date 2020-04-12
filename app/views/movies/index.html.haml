@@ -5,10 +5,10 @@
   %thead
     %tr
       %th 
-        %a{href: "#"} Movie Title
+        %a{href: movies_url(sort_by_title: true)} Movie Title
       %th Rating
       %th 
-        %a{href: "#"} Release Date
+        %a{href: movies_url(sort_by_release_date: true)} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
