@@ -4,9 +4,11 @@
 %table#movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th Movie Title
+      %th 
+        %a{href: "#"} Movie Title
       %th Rating
-      %th Release Date
+      %th 
+        %a{href: "#"} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
