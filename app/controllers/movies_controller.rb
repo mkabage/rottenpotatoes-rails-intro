@@ -11,11 +11,14 @@ class MoviesController < ApplicationController
   end
 
   def index
-    sort_by_title = params.fetch(:sort_by_title, nil)
-    sort_by_release_date = params.fetch(:sort_by_release_date, nil).present?
     @all_ratings = Movie.ratings
-    @movies = Movie.all
+
+    filters = get_ratings.presence || @all_ratings
+
+    @movies = Movie.where(rating: filters)
+    
     @hilite = nil
+    
     if sort_by_title.present?
       @movies = @movies.order(title: :asc)
       @hilite = "title"
@@ -53,6 +56,20 @@ class MoviesController < ApplicationController
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
+  end
+
+  private
+
+  def sort_by_title
+    params.fetch(:sort_by_title, nil)
+  end
+
+  def sort_by_release_date
+    params.fetch(:sort_by_release_date, nil)
+  end
+
+  def get_ratings
+    params.fetch(:ratings, {}).keys
   end
 
 end
