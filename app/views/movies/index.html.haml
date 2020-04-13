@@ -4,11 +4,11 @@
 %table#movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th 
-        %a{id: "title_header", href: movies_url(sort_by_title: true)} Movie Title
+      %th{class: @hilite == 'title' ? 'hilite' : '' }
+        %a{id: "title_header", href: movies_path(sort_by_title: true)} Movie Title
       %th Rating
-      %th 
-        %a{id: "release_date_header", href: movies_url(sort_by_release_date: true)} Release Date
+      %th{class: @hilite == 'release_date' ? 'hilite' : '' }
+        %a{id: "release_date_header", href: movies_path(sort_by_release_date: true)} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
